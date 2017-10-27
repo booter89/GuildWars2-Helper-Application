@@ -4,17 +4,30 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\kttruedson\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\obj\Debug\
+=======
+C:\Users\Booters Computer\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\obj\Debug\
+>>>>>>> 1a7ef835ae505a88842b874f55daede7470eebb0
 Enhanced_Guild_Wars_2
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\kttruedson\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\App.xaml
 81513148575
 
 331719748904
 151779441212
 MainWindow.xaml;User Controls\AccountOverview.xaml;User Controls\CharacterOverview.xaml;User Controls\Equipment.xaml;User Controls\Inventory.xaml;User Controls\KeyBoardAndMouse.xaml;User Controls\Status.xaml;User Controls\TradingPost.xaml;
+=======
+C:\Users\Booters Computer\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\App.xaml
+11151548125
+
+9-946050696
+13738642453
+MainWindow.xaml;
+>>>>>>> 1a7ef835ae505a88842b874f55daede7470eebb0
 
 False
 
