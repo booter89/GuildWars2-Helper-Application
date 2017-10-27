@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enhanced_Guild_Wars_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="1000" Width="1800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush EndPoint=".75,1" StartPoint=".75, 0">
+                <GradientStop Color="#FF252525" Offset="0"/>
+                <GradientStop Color="#FF0E0D0E" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <Border BorderBrush="Gray" BorderThickness="0,0,0,1">
+                <Menu VerticalAlignment="Top">
+                    <MenuItem Header="_Account">
+                        <MenuItem Header="_Overview" Click="AccountOverviewBtn_Click"/>
+                        <MenuItem Header="_Characters" x:Name="CharacterMenu"/>
+                    </MenuItem>
+                    <MenuItem Header="_File">
+                        <MenuItem Header="_Status" Click="Status_Click"/>
+                        <Separator />
+                        <MenuItem Header="_Mouse Position" Click="MousePosition_Click"/>
+                    </MenuItem>
+                </Menu>
+            </Border>
+
+        </Grid>
+
+        <Grid x:Name="MainUC" Grid.Row="1">
+
+        </Grid>
+
     </Grid>
 </Window>

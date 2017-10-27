@@ -35,8 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +60,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Routines\Automation.cs" />
+    <Compile Include="User Controls\AccountOverview.xaml.cs">
+      <DependentUpon>AccountOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\CharacterOverview.xaml.cs">
+      <DependentUpon>CharacterOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Converter\ImagePathConverter.cs" />
+    <Compile Include="User Controls\Equipment.xaml.cs">
+      <DependentUpon>Equipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Inventory.xaml.cs">
+      <DependentUpon>Inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\KeyBoardAndMouse.xaml.cs">
+      <DependentUpon>KeyBoardAndMouse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Status.xaml.cs">
+      <DependentUpon>Status.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\TradingPost.xaml.cs">
+      <DependentUpon>TradingPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Application.cs" />
+    <Compile Include="Utilities\GuildWars.cs" />
+    <Compile Include="Utilities\MouseActivity.cs" />
+    <Compile Include="Utilities\UserActivityHook.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,10 +95,49 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Concrete\Constants\Account.cs" />
+    <Compile Include="Concrete\Constants\Events.cs" />
+    <Compile Include="Concrete\Constants\Formatting.cs" />
+    <Compile Include="Concrete\Constants\Images.cs" />
+    <Compile Include="Concrete\Constants\Item.cs" />
+    <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\Character.cs" />
+    <Compile Include="Entities\Commerce.cs" />
+    <Compile Include="Entities\CommerceListing.cs" />
+    <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\SharedInventoryItem.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="User Controls\AccountOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\CharacterOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\Equipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\Inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\KeyBoardAndMouse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\Status.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\TradingPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -86,6 +157,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,6 +166,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GIFs\throbber.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\BlackBox.png" />
+    <Resource Include="Assets\Images\Deleted_Item.png" />
+    <Resource Include="Assets\Images\elementalist-small.png" />
+    <Resource Include="Assets\Images\engineer-small.png" />
+    <Resource Include="Assets\Images\guardian-small.png" />
+    <Resource Include="Assets\Images\mesmer-small.png" />
+    <Resource Include="Assets\Images\necromancer-small.png" />
+    <Resource Include="Assets\Images\ranger-small.png" />
+    <Resource Include="Assets\Images\revenant-small.png" />
+    <Resource Include="Assets\Images\thief-small.png" />
+    <Resource Include="Assets\Images\transparent.png" />
+    <Resource Include="Assets\Images\warrior-small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\copper.png" />
+    <Resource Include="Assets\Images\gold.png" />
+    <Resource Include="Assets\Images\silver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
