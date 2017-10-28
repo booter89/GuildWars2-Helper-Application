@@ -33,6 +33,7 @@ namespace Enhanced_Guild_Wars_2
         public UserActivityHook activity;
         public Account account;
 
+        public TradingPost tradingPostTab;
         public Status StatusTab;
         public KeyBoardAndMouse mouseTab;
         public AccountOverview accountOverviewTap;
@@ -47,6 +48,7 @@ namespace Enhanced_Guild_Wars_2
             accountOverviewTap = new AccountOverview(this);
             StatusTab = new Status(this);
             mouseTab = new KeyBoardAndMouse(this);
+            tradingPostTab = new TradingPost(this);
 
             UpdateMainUC(StatusTab);
 
@@ -250,6 +252,14 @@ namespace Enhanced_Guild_Wars_2
             Grid.SetColumn(userControl, 0);
 
             Grid.SetRow(userControl, 0);
+        }
+
+        private void TradingPost_Click(object sender, RoutedEventArgs e)
+        {
+            if (accountLoaded)
+            {
+                UpdateMainUC(tradingPostTab);
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.IO;
+using Enhanced_Guild_Wars_2.Routines;
 
 namespace Enhanced_Guild_Wars_2.Entities
 {
@@ -31,21 +32,11 @@ namespace Enhanced_Guild_Wars_2.Entities
         {
             var url = @"https://api.guildwars2.com/v2/characters?page=0";
 
-            using (var webClient = new System.Net.WebClient())
-            {
-                webClient.Headers.Add("Content-Type", "text");
-                webClient.Headers[System.Net.HttpRequestHeader.Authorization] = "Bearer " + this.APIKey;
+            this.Characters = API.getScalarValue<List<Character>>(url);
 
-                var response = webClient.DownloadString(url);
+            url = @"https://api.guildwars2.com/v2/account/inventory";
 
-                this.Characters = JsonConvert.DeserializeObject<List<Character>>(response);
-
-                url = @"https://api.guildwars2.com/v2/account/inventory";
-
-                response = webClient.DownloadString(url);
-
-                this.SharedInvenotry = JsonConvert.DeserializeObject<List<ShareInventoryItem>>(response);
-            }
+            this.SharedInvenotry = API.getScalarValue<List<ShareInventoryItem>>(url);
 
             foreach (Character c in this.Characters)
             {

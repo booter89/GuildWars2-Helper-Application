@@ -26,6 +26,8 @@
                     <MenuItem Header="_Account">
                         <MenuItem Header="_Overview" Click="AccountOverviewBtn_Click"/>
                         <MenuItem Header="_Characters" x:Name="CharacterMenu"/>
+                        <MenuItem Header="_Trading Post" Click="TradingPost_Click">
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Header="_File">
                         <MenuItem Header="_Status" Click="Status_Click"/>

@@ -46,7 +46,7 @@
                 <Label Content="Inventory" FontFamily="Serif" FontWeight="Bold" FontSize="16" Margin="0" Padding="0" Width="100"></Label>
             </StackPanel>
             <ItemsControl x:Name="CharacterOverviewIC" Grid.Row="1">
-                <!--AlternationCount="2"-->
+
                 <ItemsControl.Template>
                     <ControlTemplate TargetType="ItemsControl">
                         <ItemsPresenter/>

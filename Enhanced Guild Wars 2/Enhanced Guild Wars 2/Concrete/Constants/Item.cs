@@ -60,9 +60,9 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
             "Trident"
         };
 
-        public static readonly string[] AXE_ITEM_IDS = 
+        public static readonly int[] AXE_ITEM_IDS =
         {
-
+            27020,26860,26221,26228,31038,44978,26395,36877,36820,36894,36825,36794,36762,36851,36787,36853,36824,36761,36791,36913,36895,36905
         };
         public static readonly string[] DAGGER_ITEM_IDS = 
         {

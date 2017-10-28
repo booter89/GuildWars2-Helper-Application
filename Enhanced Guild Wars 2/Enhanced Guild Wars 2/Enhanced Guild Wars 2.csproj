@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Routines\API.cs" />
     <Compile Include="Routines\Automation.cs" />
     <Compile Include="User Controls\AccountOverview.xaml.cs">
       <DependentUpon>AccountOverview.xaml</DependentUpon>

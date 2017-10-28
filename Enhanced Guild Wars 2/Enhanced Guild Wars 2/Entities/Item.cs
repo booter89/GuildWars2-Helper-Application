@@ -28,10 +28,10 @@ namespace Enhanced_Guild_Wars_2.Entities
 
         //Property
         //--https://api.guildwars2.com/v2/commerce/prices/--ItemIdHere-
-        //public Commerce commerce { get; set; }
+        public Commerce commerce { get; set; }
 
         //--https://api.guildwars2.com/v2/commerce/listings/--ItemIdHere--
-        //public CommerceListings listings { get; set; }
+        public CommerceListings listings { get; set; }
 
     }
 
