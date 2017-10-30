@@ -8,6 +8,11 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
 {
     public class Images
     {
+        //Inventory
+        public const string BLACKBOX_PNG = "BlackBox.png";
+        public const string DELETED_ITEM_PNG = "Deleted_Item.png";
+        public const string TRANSPARENT_PNG = "transparent.png";
+
         //Small PNG
         public const string ElementalistSmallPNG = "elementalist-small.png";
         public const string MesmerSmallPNG = "mesmer-small.png";
@@ -20,6 +25,12 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
         public const string WarriorSmallPNG = "warrior-small.png";
         public const string RevenantSmallPNG = "revenant-small.png";
         public const string GuardianSmallPNG = "guardian-small.png";
+
+        //Currency
+        public const string GOLD_PNG = "gold.png";
+        public const string SILVER_PNG = "silver.png";
+        public const string COPPER_PNG = "copper.png";
+
 
     }
 }

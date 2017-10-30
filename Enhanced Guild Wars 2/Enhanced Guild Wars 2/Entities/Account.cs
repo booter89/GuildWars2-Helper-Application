@@ -196,7 +196,8 @@ namespace Enhanced_Guild_Wars_2.Entities
 
                     item.rarity = "Junk";
 
-                    item.icon = @"C:\Users\kttruedson\Desktop\GuildWars2Helper\GuildWars2Helper\Resources\Images\BlackBox.png";
+                    item.icon = Path.GetFullPath(@"..\..\Assets\Images\" + Concrete.Constants.Images.BLACKBOX_PNG);
+                    //item.icon = @"C:\Users\kttruedson\Desktop\GuildWars2Helper\GuildWars2Helper\Resources\Images\BlackBox.png";
 
                     SharedInventoryItem = new Tuple<ShareInventoryItem, Item>(SharedItem, item);
                 }
@@ -251,7 +252,8 @@ namespace Enhanced_Guild_Wars_2.Entities
 
                                 i.rarity = "Junk";
 
-                                i.icon = @"C:\Users\kttruedson\Desktop\GuildWars2Helper\GuildWars2Helper\Resources\Images\Deleted_Item.png";
+                                i.icon = Path.GetFullPath(@"..\..\Assets\Images\" + Concrete.Constants.Images.DELETED_ITEM_PNG);
+                                //i.icon = @"C:\Users\kttruedson\Desktop\GuildWars2Helper\GuildWars2Helper\Resources\Images\Deleted_Item.png";
 
                                 InventoryItem = new Tuple<Inventory, Item>(item, i);
                             }
@@ -264,7 +266,8 @@ namespace Enhanced_Guild_Wars_2.Entities
 
                             i.rarity = "Junk";
 
-                            i.icon = @"C:\Users\kttruedson\Desktop\GuildWars2Helper\GuildWars2Helper\Resources\Images\BlackBox.png";
+                            i.icon = Path.GetFullPath(@"..\..\Assets\Images\" + Concrete.Constants.Images.BLACKBOX_PNG);
+                            //i.icon = @"C:\Users\kttruedson\Desktop\GuildWars2Helper\GuildWars2Helper\Resources\Images\BlackBox.png";
 
                             InventoryItem = new Tuple<Inventory, Item>(item, i);
                         }

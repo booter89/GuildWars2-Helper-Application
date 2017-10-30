@@ -25,7 +25,7 @@ namespace Enhanced_Guild_Wars_2.Routines
             }
         }
 
-        public static IList<T> getNonScalarValue<T>(string url)
+        public static List<T> getNonScalarValue<T>(string url)
         {
             using (var webClient = new System.Net.WebClient())
             {

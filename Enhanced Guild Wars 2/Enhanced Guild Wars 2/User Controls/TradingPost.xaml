@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Enhanced_Guild_Wars_2.User_Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+             xmlns:local="clr-namespace:Enhanced_Guild_Wars_2.User_Controls.Converter"
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <local:GoldStringConverter x:Key="GoldStringConverter"/>
+        <local:SilverStringConverter x:Key="SilverStringConverter"/>
+        <local:CopperStringConverter x:Key="CopperStringConverter"/>
+        <local:IsNullConverter x:Key="IsNullConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint=".5,1" StartPoint=".5, 0">
@@ -14,43 +20,230 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
-        <ItemsControl x:Name="ItemInformation">
 
-            <ItemsControl.Template>
-                <ControlTemplate TargetType="ItemsControl">
-                    <ItemsPresenter/>
-                </ControlTemplate>
-            </ItemsControl.Template>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Button Content="Test" Click="Button_Click"></Button>
+        </Grid>
+        <DataGrid x:Name="ItemsToBuy" AutoGenerateColumns="False" Grid.Row="2" Grid.Column="1" BorderBrush="Gray" CanUserSortColumns="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" >
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text=""/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border x:Name="ItemToPurchaseBorder"  BorderThickness="2" Margin="2">
+                                <Image Source="{Binding icon}" Width="40" Height="40"/>
+                            </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding rarity}" Value="Junk">
+                                    <Setter Property="BorderBrush" Value="LightGray" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding rarity}" Value="Basic">
+                                    <Setter Property="BorderBrush" Value="Black" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding rarity}" Value="Fine">
+                                    <Setter Property="BorderBrush" Value="#62A4DA" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding rarity}" Value="Masterwork">
+                                    <Setter Property="BorderBrush" Value="#1a9306" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding rarity}" Value="Rare">
+                                    <Setter Property="BorderBrush" Value="#fcd00b" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding rarity}" Value="Exotic">
+                                    <Setter Property="BorderBrush" Value="#ffa405" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding rarity}" Value="Ascended">
+                                    <Setter Property="BorderBrush" Value="#Fb3e8d" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding rarity}" Value="Legendary">
+                                    <Setter Property="BorderBrush" Value="#4C139D" TargetName="ItemToPurchaseBorder"></Setter>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" HeaderStyle="{StaticResource LeftDataGridHeaderStyle}">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Name" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding name}" FontSize="14" FontFamily="Serif" Foreground="#428bca" FontWeight="Bold" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,5,0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>                    
-                        <Grid x:Name="CharacterOverviewICIT" >
-                            
-                        </Grid>
-                    
-                    <DataTemplate.Triggers>
-                        <!--<Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                                <Setter Property="Background" Value="#FF191919" TargetName="CharacterOverviewICIT"/>
-                            </Trigger>
-                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                                <Setter Property="Background" Value="#FF292929" TargetName="CharacterOverviewICIT"/>
-                            </Trigger>-->
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" HeaderStyle="{StaticResource RightDataGridHeaderStyle}">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Buy"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Image Width="0" Height="0" x:Name="GoldBuyPriceImage" Margin="0"/>
+                                <TextBlock Text="{Binding commerce.goldBuy}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#E68A00" FontWeight="Bold" Margin="2,0,5,0"/>
+                                <Image Width="0" Height="0" x:Name="SilverBuyPriceImage"/>
+                                <TextBlock Text="{Binding commerce.silverBuy}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#787878" FontWeight="Bold" Margin="2,0,5,0"/>
+                                <Image Width="0" Height="0" x:Name="CopperBuyPriceImage"/>
+                                <TextBlock Text="{Binding commerce.copperBuy}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#D47F46" FontWeight="Bold" Margin="2,0,0,0"/>
+                            </StackPanel>
+
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding commerce.goldBuy, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/gold.png" TargetName="GoldBuyPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="GoldBuyPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="GoldBuyPriceImage"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding commerce.silverBuy, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/silver.png" TargetName="SilverBuyPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="SilverBuyPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="SilverBuyPriceImage"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding commerce.copperBuy, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/copper.png" TargetName="CopperBuyPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="CopperBuyPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="CopperBuyPriceImage"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="SizeToCells" IsReadOnly="True" HeaderStyle="{StaticResource RightDataGridHeaderStyle}">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Sell"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Image Width="0" Height="0" x:Name="GoldSellPriceImage" Margin="0"/>
+                                <TextBlock Text="{Binding commerce.goldSell}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#E68A00" FontWeight="Bold" Margin="2,0,5,0"/>
+                                <Image Width="0" Height="0" x:Name="SilverSellPriceImage"/>
+                                <TextBlock Text="{Binding commerce.silverSell}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#787878" FontWeight="Bold" Margin="2,0,5,0"/>
+                                <Image Width="0" Height="0" x:Name="CopperSellPriceImage"/>
+                                <TextBlock Text="{Binding commerce.copperSell}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#D47F46" FontWeight="Bold" Margin="2,0,0,0"/>
+                            </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding commerce.goldSell, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/gold.png" TargetName="GoldSellPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="GoldSellPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="GoldSellPriceImage"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding commerce.silverSell, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/silver.png" TargetName="SilverSellPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="SilverSellPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="SilverSellPriceImage"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding commerce.copperSell, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/copper.png" TargetName="CopperSellPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="CopperSellPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="CopperSellPriceImage"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="SizeToCells" IsReadOnly="True" HeaderStyle="{StaticResource RightDataGridHeaderStyle}">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Spread"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Image Width="0" Height="0" x:Name="GoldSpreadPriceImage" Margin="0"/>
+                                <TextBlock Text="{Binding commerce.goldSpread}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#E68A00" FontWeight="Bold" Margin="2,0,5,0"/>
+                                <Image Width="0" Height="0" x:Name="SilverSpreadPriceImage"/>
+                                <TextBlock Text="{Binding commerce.silverSpread}" 
+                                                   FontSize="12" FontFamily="Serif" Foreground="#787878" FontWeight="Bold" Margin="2,0,5,0"/>
+                                <Image Width="0" Height="0" x:Name="CopperSpreadPriceImage"/>
+                                <TextBlock Text="{Binding commerce.copperSpread}" 
+                                                   FontSize="12 " FontFamily="Serif" Foreground="#D47F46" FontWeight="Bold" Margin="2,0,0,0"/>
+                            </StackPanel>
+
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding commerce.goldSpread, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/gold.png" TargetName="GoldSpreadPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="GoldSpreadPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="GoldSpreadPriceImage"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding commerce.silverSpread, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/silver.png" TargetName="SilverSpreadPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="SilverSpreadPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="SilverSpreadPriceImage"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding commerce.copperSpread, Converter={StaticResource IsNullConverter}}" Value="False">
+                                    <Setter Property="Source" Value="../Assets/Images/copper.png" TargetName="CopperSpreadPriceImage"/>
+                                    <Setter Property="Width" Value="14" TargetName="CopperSpreadPriceImage"/>
+                                    <Setter Property="Height" Value="14" TargetName="CopperSpreadPriceImage"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" HeaderStyle="{StaticResource RightDataGridHeaderStyle}">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Profit"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding commerce.profit, StringFormat=P1}" FontSize="12 " FontFamily="Serif" FontWeight="Medium"
+                                       VerticalAlignment="Center" HorizontalAlignment="Right" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" HeaderStyle="{StaticResource RightDataGridHeaderStyle}">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Demand"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding commerce.buys.quantity}" FontSize="12 " FontFamily="Serif" FontWeight="Medium"
+                                       VerticalAlignment="Center" HorizontalAlignment="Right" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" HeaderStyle="{StaticResource RightDataGridHeaderStyle}">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Supply" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding commerce.sells.quantity}" FontSize="12 " FontFamily="Serif" FontWeight="Medium" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Right" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </UserControl>

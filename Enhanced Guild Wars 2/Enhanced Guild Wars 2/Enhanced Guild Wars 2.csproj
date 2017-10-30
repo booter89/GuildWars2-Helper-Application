@@ -68,7 +68,11 @@
     <Compile Include="User Controls\CharacterOverview.xaml.cs">
       <DependentUpon>CharacterOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\Converter\CopperStringConverter.cs" />
+    <Compile Include="User Controls\Converter\GoldStringConverter.cs" />
     <Compile Include="User Controls\Converter\ImagePathConverter.cs" />
+    <Compile Include="User Controls\Converter\IsNullConverter.cs" />
+    <Compile Include="User Controls\Converter\SilverStringConverter.cs" />
     <Compile Include="User Controls\Equipment.xaml.cs">
       <DependentUpon>Equipment.xaml</DependentUpon>
     </Compile>

@@ -57,15 +57,14 @@ namespace Enhanced_Guild_Wars_2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //activity = new UserActivityHook();
+
+            //activity.OnMouseActivity += new System.Windows.Forms.MouseEventHandler(MouseMoved);
+            //activity.KeyDown += new System.Windows.Forms.KeyEventHandler(MyKeyDown);
+            //activity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(MyKeyPress);
+            //activity.KeyUp += new System.Windows.Forms.KeyEventHandler(MyKeyUp);
+
             //this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            activity = new UserActivityHook();
-
-            activity.OnMouseActivity += new System.Windows.Forms.MouseEventHandler(MouseMoved);
-            activity.KeyDown += new System.Windows.Forms.KeyEventHandler(MyKeyDown);
-            activity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(MyKeyPress);
-            activity.KeyUp += new System.Windows.Forms.KeyEventHandler(MyKeyUp);
-
 
             UpdateStatus(String.Format("Pulling Account Information From GuildWars2.com"));
 
@@ -131,48 +130,7 @@ namespace Enhanced_Guild_Wars_2
             worker.RunWorkerAsync();
         }
 
-        public void MouseMoved(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (this.running == true)
-            {
-                Mouse.Capture(this);
-                Point pointToWindow = Mouse.GetPosition(this);
-                Point pointToScreen = PointToScreen(pointToWindow);
-                mouseTab.xLabel.Content = pointToScreen.X.ToString();
-                mouseTab.yLabel.Content = pointToScreen.Y.ToString();
-                Mouse.Capture(null);
-            }
-        }
 
-        public List<string> keyClicks = new List<string>();
-
-        public void MyKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            keyClicks.Add(e.KeyData.ToString());
-
-            List<string> AltF1 = new List<string>() { "Escape" };
-
-            if (keyClicks.Contains(AltF1[0]))
-            {
-                if (this.running == true)
-                {
-                    this.running = false;
-                }
-                else
-                {
-                    this.running = true;
-                }
-            }
-        }
-
-        public void MyKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-        }
-
-        public void MyKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            keyClicks.Remove(e.KeyData.ToString());
-        }
 
         public void UpdateStatus(string status, bool error = false)
         {
@@ -261,5 +219,48 @@ namespace Enhanced_Guild_Wars_2
                 UpdateMainUC(tradingPostTab);
             }
         }
+
+        //public void MouseMoved(object sender, System.Windows.Forms.MouseEventArgs e)
+        //{
+        //    if (this.running == true)
+        //    {
+        //        Mouse.Capture(this);
+        //        Point pointToWindow = Mouse.GetPosition(this);
+        //        Point pointToScreen = PointToScreen(pointToWindow);
+        //        mouseTab.xLabel.Content = pointToScreen.X.ToString();
+        //        mouseTab.yLabel.Content = pointToScreen.Y.ToString();
+        //        Mouse.Capture(null);
+        //    }
+        //}
+
+        //public List<string> keyClicks = new List<string>();
+
+        //public void MyKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        //{
+        //    keyClicks.Add(e.KeyData.ToString());
+
+        //    List<string> AltF1 = new List<string>() { "Escape" };
+
+        //    if (keyClicks.Contains(AltF1[0]))
+        //    {
+        //        if (this.running == true)
+        //        {
+        //            this.running = false;
+        //        }
+        //        else
+        //        {
+        //            this.running = true;
+        //        }
+        //    }
+        //}
+
+        //public void MyKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        //{
+        //}
+
+        //public void MyKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        //{
+        //    keyClicks.Remove(e.KeyData.ToString());
+        //}
     }
 }

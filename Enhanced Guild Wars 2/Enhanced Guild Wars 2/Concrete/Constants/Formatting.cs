@@ -30,5 +30,11 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
         public const string WarriorColor = "#d08b17";
         public const string RevenantColor = "#370d0d";
         public const string GuardianColor = "#45a2d0";
+
+        //Currency 
+        public const string GOLD_COIN = "#E68A00";
+        public const string SILVER_COIN = "#787878";
+        public const string COPPER_COIN = "#D47F46";
+
     }
 }

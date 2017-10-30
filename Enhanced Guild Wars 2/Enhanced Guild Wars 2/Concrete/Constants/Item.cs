@@ -62,7 +62,10 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
 
         public static readonly int[] AXE_ITEM_IDS =
         {
-            27020,26860,26221,26228,31038,44978,26395,36877,36820,36894,36825,36794,36762,36851,36787,36853,36824,36761,36791,36913,36895,36905
+            44981,44987,25967,25958,15433,25964,25961,46230,25971,46235,25969,47091,15436,47505,38319,46321,34125,46229,15431,15435,
+            44982,46232,47182,15434,46231,46234,15430,46233,32262,36761,29166,48723,41524,31085,41524
+
+            //31036,31035,31055,31037,24959
         };
         public static readonly string[] DAGGER_ITEM_IDS = 
         {
@@ -100,9 +103,12 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
         {
 
         };
-        public static readonly string[] GREATSWORD_ITEM_IDS = 
+        public static readonly int[] GREATSWORD_ITEM_IDS = 
         {
+            44977,27325,15475,27328,15477,27334,32274,15478,47085,15476,34137,27321,15473,27338,15472,46237,27336,47194,46238,47518,
+            46236,25079,46241,46334,44985,48726,46239,46240,38345,46242,41532,36825
 
+                //31086
         };
         public static readonly string[] HAMMER_ITEM_IDS = 
         {
@@ -137,6 +143,22 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
 
         };
 
+        public static List<int> getIds()
+        {
+            List<int> ids = new List<int>();
+
+            foreach (int i in AXE_ITEM_IDS)
+            {
+                ids.Add(i);
+            }
+
+            foreach (int i in GREATSWORD_ITEM_IDS)
+            {
+                ids.Add(i);
+            }
+
+            return ids;
+        }
 
 
     }

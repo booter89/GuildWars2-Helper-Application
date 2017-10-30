@@ -32,7 +32,6 @@ namespace Enhanced_Guild_Wars_2.Entities
 
         //--https://api.guildwars2.com/v2/commerce/listings/--ItemIdHere--
         public CommerceListings listings { get; set; }
-
     }
 
     public class Attribute

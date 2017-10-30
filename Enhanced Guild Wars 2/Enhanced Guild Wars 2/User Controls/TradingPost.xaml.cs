@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using Enhanced_Guild_Wars_2.Entities;
 using Enhanced_Guild_Wars_2.Routines;
 using System.Reflection;
+using System.ComponentModel;
+using System.Threading;
+using Enhanced_Guild_Wars_2.Utilities;
 
 namespace Enhanced_Guild_Wars_2.User_Controls
 {
@@ -23,31 +26,145 @@ namespace Enhanced_Guild_Wars_2.User_Controls
     /// </summary>
     public partial class TradingPost : UserControl
     {
+        private BackgroundWorker worker = new BackgroundWorker();
+        public UserActivityHook activity;
+
         public MainWindow parent;
-        public List<CommerceListings> items;
+        public List<Item> items;
 
         public TradingPost(MainWindow parent)
         {
             InitializeComponent();
 
             this.parent = parent;
-            this.items = new List<CommerceListings>();
+            this.items = new List<Item>();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             getItemInformation();
+
+            ItemsToBuy.ItemsSource = this.items.OrderByDescending(s => s.commerce.profit);
         }
 
         public void getItemInformation()
         {
-            string ids = String.Join(",", Concrete.Constants.Item.AXE_ITEM_IDS);
+            List<int> itemIds = new List<int>();
 
-            string resource = @"http://api.guildwars2.com/v2/commerce/listings?ids=";
+            itemIds = Concrete.Constants.Item.getIds();
 
-            string url = String.Format("{0}{1}", resource, ids);
+            List<Commerce> commerce = new List<Commerce>();
 
-            var items = API.getNonScalarValue<CommerceListings>(url);
+            string ids = String.Join(",", itemIds);
+
+            string urlBeginning = @"https://api.guildwars2.com/v2/items?ids=";
+
+            string url = String.Format("{0}{1}", urlBeginning, ids);
+
+            this.items = API.getNonScalarValue<Item>(url);
+
+            urlBeginning = @"https://api.guildwars2.com/v2/commerce/prices?ids=";
+
+            url = String.Format("{0}{1}", urlBeginning, ids);
+
+            commerce = API.getNonScalarValue<Commerce>(url);
+
+            foreach (Item i in this.items)
+            {
+                i.commerce = commerce.Where(x => x.id == i.id).Select(x => x).ToList().First();
+
+                i.commerce.calculate();
+            }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            activity = new UserActivityHook();
+
+            activity.OnMouseActivity += new System.Windows.Forms.MouseEventHandler(MouseMoved);
+            activity.KeyDown += new System.Windows.Forms.KeyEventHandler(MyKeyDown);
+            activity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(MyKeyPress);
+            activity.KeyUp += new System.Windows.Forms.KeyEventHandler(MyKeyUp);
+
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+
+            worker.DoWork += (o, ea) =>
+            {
+                List<Item> sortedItems = new List<Item>();
+
+                sortedItems = items.Where(x => x.commerce.profit > .15).Select(x => x).ToList();
+
+                int quanitity = 4;
+
+                foreach (Item weapon in sortedItems)
+                {
+                    if (worker.CancellationPending)
+                    {
+                        break;
+                    }
+
+                    Automation.PlaceBuyOrder(weapon.name, quanitity);
+                }
+            };
+
+            worker.ProgressChanged += (o, ea) =>
+            {
+                
+            };
+
+            worker.RunWorkerCompleted += (o, ea) =>
+            {
+                if (ea.Error != null)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+            };
+
+            worker.RunWorkerAsync();
+
+        }
+
+        public void MouseMoved(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            //if (this.running == true)
+            //{
+            //    Mouse.Capture(this);
+            //    Point pointToWindow = Mouse.GetPosition(this);
+            //    Point pointToScreen = PointToScreen(pointToWindow);
+            //    mouseTab.xLabel.Content = pointToScreen.X.ToString();
+            //    mouseTab.yLabel.Content = pointToScreen.Y.ToString();
+            //    Mouse.Capture(null);
+            //}
+        }
+
+        public List<string> keyClicks = new List<string>();
+
+        public void MyKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            keyClicks.Add(e.KeyData.ToString());
+
+            List<string> AltF1 = new List<string>() { "Escape" };
+
+            if (keyClicks.Contains(AltF1[0]))
+            {
+                worker.CancelAsync();
+            }
+        }
+
+        public void MyKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+        }
+
+        public void MyKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            keyClicks.Remove(e.KeyData.ToString());
+        }
+
     }
 }
