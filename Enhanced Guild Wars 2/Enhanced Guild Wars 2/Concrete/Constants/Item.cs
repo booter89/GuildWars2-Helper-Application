@@ -64,97 +64,129 @@ namespace Enhanced_Guild_Wars_2.Concrete.Constants
         {
             44981,44987,25967,25958,15433,25964,25961,46230,25971,46235,25969,47091,15436,47505,38319,46321,34125,46229,15431,15435,
             44982,46232,47182,15434,46231,46234,15430,46233,32262,36761,29166,48723,41524,31085,41524
-
             //31036,31035,31055,31037,24959
         };
-        public static readonly string[] DAGGER_ITEM_IDS = 
+        public static readonly int[] DAGGER_ITEM_IDS = 
         {
-
+            26150,46201,47083,46203,26135,47510,26145,46202,38350,34129,26148,15272,26152,26139,15275,15270,46269,46204,47186,15274,
+            24999,46207,15273,32266,46206,46205,15269,44978,44986,36794,48724,13663,41528,31106,31105,19354,31108
         };
-        public static readonly string[] MACE_ITEM_IDS = 
+        public static readonly int[] MACE_ITEM_IDS = 
         {
-
+            44975,25975,25990,25988,46215,47089,25985,25992,15359,25979,34153,46216,46221,47534,38335,15356,15353,15358,46295,46218,
+            46217,15357,15354,29173,47210,32290,46219,25239,46220,36877,41540,48729,31104
         };
-        public static readonly string[] PISTOL_ITEM_IDS = 
+        public static readonly int[] PISTOL_ITEM_IDS = 
         {
-
+            26706,26697,26693,26708,26703,38374,46089,46090,14577,47090,46091,46095,47538,26700,14575,34157,46094,46168,14578,14574,
+            46092,14579,32294,47214,36787,14580,29174,48730,46093,25279,31096,41500,19357,14928,31080
         };
-        public static readonly string[] SWORD_ITEM_IDS = 
+        public static readonly int[] SWORD_ITEM_IDS = 
         {
-
+            26221,44960,44999,26237,26228,26231,26239,15315,15314,34185,15312,46208,38321,32322,46211,25559,47242,15311,47096,46214,
+            47566,26234,15317,46210,46282,44969,15316,48736,46212,46213,46209,14935,19361,41552,36913,31095,31066,31065,31068,31067,
+            31069,31063
         };
-        public static readonly string[] SCEPTER_ITEM_IDS = 
+        public static readonly int[] SCEPTER_ITEM_IDS = 
         {
-
+            44972,26389,26384,44991,26395,26380,26405,26400,13906,45977,45976,45982,26408,46028,47546,19363,13904,13903,38416,19358,
+            45978,13909,13907,47222,45981,13908,45980,34165,25359,14930,45979,48732,36791,41484,29176,32302,31057,31090,31058,31056,
+            31081
         };
-        public static readonly string[] FOCUS_ITEM_IDS = 
+        public static readonly int[] FOCUS_ITEM_IDS = 
         {
-
+            44961,27020,27022,27007,27024,44962,27017,44963,45985,27014,38410,47084,45984,13981,13985,34133,45989,13984,13980,45988,
+            45983,13986,45987,46041,47514,13983,47190,45986,19355,48725,25039,36762,32270,41480,29168,31038,14922,31083,31084,31050,
+            31044,31049,31082,31047,31040,31042,31039,31048,31051,31043,31046
         };
-        public static readonly string[] SHIELD_ITEM_IDS = 
+        public static readonly int[] SHIELD_ITEM_IDS = 
         {
-
+            44971,26552,26557,26561,47092,48733,15395,26544,26541,46228,46222,46223,46227,15399,46224,26537,38330,46226,15396,15401,
+            46308,15398,47550,34169,15400,47226,46225,25399,36056,41544,32306,19359,31091,29177,19364,31059,31062,19365,31060
         };
-        public static readonly string[] TORCH_ITEM_IDS = 
+        public static readonly int[] TORCH_ITEM_IDS = 
         {
-
+            27187,27171,27164,47097,27174,27184,46077,38398,46075,14570,46080,14572,27179,46078,46076,14568,46081,14573,46079,34189,
+            14567,46148,14571,47570,44968,25599,47246,44990,36894,32326,48737,29182,41516,31099,14936
         };
-        public static readonly string[] WARHORN_ITEM_IDS = 
+        public static readonly int[] WARHORN_ITEM_IDS = 
         {
-
+            44967,26869,44989,26854,26874,26857,46068,46069,46071,47099,46074,38404,46073,34197,14493,46072,47578,14494,46129,26860,
+            14491,46070,26850,14495,14496,14490,47254,32334,36905,48738,25679,29184,41520,14938,31100
         };
         public static readonly int[] GREATSWORD_ITEM_IDS = 
         {
             44977,27325,15475,27328,15477,27334,32274,15478,47085,15476,34137,27321,15473,27338,15472,46237,27336,47194,46238,47518,
             46236,25079,46241,46334,44985,48726,46239,46240,38345,46242,41532,36825
-
-                //31086
+            //31086
         };
-        public static readonly string[] HAMMER_ITEM_IDS = 
+        public static readonly int[] HAMMER_ITEM_IDS = 
+        {
+            44988,27644,44964,27638,27634,15520,15519,15514,38340,46243,27649,47522,15517,48727,27641,15515,34141,46249,27647,47198,
+            46244,46245,44965,32278,15518,46347,47086,46246,46248,46247,25119,29170,41536,31097,31079,31078
+        };
+        public static readonly int[] LONGBOW_ITEM_IDS = 
+        {
+            44980,28262,28275,28266,28277,28272,25199,47088,28269,14441,34149,47206,14446,14445,46083,14443,38368,14444,47530,46161,
+            46082,46085,14447,44983,48728,46088,36759,46084,32286,46087,46086,29172,41496,14926,31070,31071,31094,31072
+        };
+        public static readonly int[] RIFLE_ITEM_IDS = 
+        {
+            27965,27958,27948,27952,44974,27963,27955,34161,44973,47082,46098,14657,46096,47542,25319,38380,14652,46097,14656,32298,
+            47218,14651,46102,46099,14655,14654,48731,46100,46187,46101,63857,36820,41504,29175,31098
+        };
+        public static readonly int[] SHORTBOW_ITEM_IDS = 
+        {
+            44979,27791,27808,27798,27802,47093,27813,48734,47554,38386,32310,14453,47230,14454,27795,46067,34173,46116,14449,46062,
+            46063,14448,14451,14452,46061,44984,46065,46064,46066,41508,25439,36051,13615,36853,29178,31074,31073,14932,31093,31075
+        };
+        public static readonly int[] STAFF_ITEM_IDS = 
+        {
+            44992,27478,27482,27502,27495,45963,13899,13897,27485,34181,45962,47562,13900,27498,13902,47238,45965,13901,13896,46002,
+            48735,32318,45968,25519,45967,45964,36824,45966,19366,38422,19360,41488,29180,14934,19367,31092,36070,31061
+        };
+        public static readonly int[] HARPOON_GUN_ITEM_IDS = 
         {
 
         };
-        public static readonly string[] LONGBOW_ITEM_IDS = 
+        public static readonly int[] SPEAR_ITEM_IDS = 
         {
 
         };
-        public static readonly string[] RIFLE_ITEM_IDS = 
-        {
-
-        };
-        public static readonly string[] SHORT_ITEM_IDS = 
-        {
-
-        };
-        public static readonly string[] STAFF_ITEM_IDS = 
-        {
-
-        };
-        public static readonly string[] HARPOON_GUN_ITEM_IDS = 
-        {
-
-        };
-        public static readonly string[] SPEAR_ITEM_IDS = 
-        {
-
-        };
-        public static readonly string[] TRIDENT_ITEM_IDS = 
+        public static readonly int[] TRIDENT_ITEM_IDS = 
         {
 
         };
 
         public static List<int> getIds()
         {
+            List<int[]> WeaponCategories = new List<int[]>();
+
+            WeaponCategories.Add(AXE_ITEM_IDS);
+            WeaponCategories.Add(DAGGER_ITEM_IDS);
+            WeaponCategories.Add(MACE_ITEM_IDS);
+            WeaponCategories.Add(PISTOL_ITEM_IDS);
+            WeaponCategories.Add(SWORD_ITEM_IDS);
+            WeaponCategories.Add(SCEPTER_ITEM_IDS);
+            WeaponCategories.Add(FOCUS_ITEM_IDS);
+            WeaponCategories.Add(SHIELD_ITEM_IDS);
+            WeaponCategories.Add(TORCH_ITEM_IDS);
+            WeaponCategories.Add(WARHORN_ITEM_IDS);
+            WeaponCategories.Add(GREATSWORD_ITEM_IDS);
+            WeaponCategories.Add(HAMMER_ITEM_IDS);
+            WeaponCategories.Add(LONGBOW_ITEM_IDS);
+            WeaponCategories.Add(RIFLE_ITEM_IDS);
+            WeaponCategories.Add(SHORTBOW_ITEM_IDS);
+            WeaponCategories.Add(STAFF_ITEM_IDS);
+
             List<int> ids = new List<int>();
 
-            foreach (int i in AXE_ITEM_IDS)
+            foreach (int[] intArray in WeaponCategories)
             {
-                ids.Add(i);
-            }
-
-            foreach (int i in GREATSWORD_ITEM_IDS)
-            {
-                ids.Add(i);
+                foreach(int id in intArray)
+                {
+                    ids.Add(id);
+                }
             }
 
             return ids;

@@ -49,29 +49,71 @@ namespace Enhanced_Guild_Wars_2.User_Controls
 
         public void getItemInformation()
         {
-            List<int> itemIds = new List<int>();
+            List<int> itemIds = new List<int>();            
+            List<Commerce> commerce = new List<Commerce>();
+            List<CommerceListings> commerceListings = new List<CommerceListings>();
 
             itemIds = Concrete.Constants.Item.getIds();
 
-            List<Commerce> commerce = new List<Commerce>();
-
             string ids = String.Join(",", itemIds);
+
 
             string urlBeginning = @"https://api.guildwars2.com/v2/items?ids=";
 
-            string url = String.Format("{0}{1}", urlBeginning, ids);
+            List<string> URLitemIds = new List<string>();
 
-            this.items = API.getNonScalarValue<Item>(url);
+            URLitemIds = API.getURLsWithIdsList(urlBeginning, itemIds);
+            
+            foreach(string url in URLitemIds)
+            {
+                var result = API.getNonScalarValue<Item>(url);
+
+                foreach (Item i in result)
+                {
+                    this.items.Add(i);
+                }
+            }
+            
 
             urlBeginning = @"https://api.guildwars2.com/v2/commerce/prices?ids=";
 
-            url = String.Format("{0}{1}", urlBeginning, ids);
+            List<string> CommercePricesUrls = new List<string>();
 
-            commerce = API.getNonScalarValue<Commerce>(url);
+            CommercePricesUrls = API.getURLsWithIdsList(urlBeginning, itemIds);
+
+            foreach (string url in CommercePricesUrls)
+            {
+                var result = API.getNonScalarValue<Commerce>(url);
+
+                foreach (Commerce c in result)
+                {
+                    commerce.Add(c);
+                }
+            }
+            
+
+            urlBeginning = @"https://api.guildwars2.com/v2/commerce/listings?ids=";
+
+            List<string> CommerceListingUrls = new List<string>();
+
+            CommerceListingUrls = API.getURLsWithIdsList(urlBeginning, itemIds);
+
+            foreach (string url in CommerceListingUrls)
+            {
+                var result = API.getNonScalarValue<CommerceListings>(url);
+
+                foreach (CommerceListings cl in result)
+                {
+                    commerceListings.Add(cl);
+                }
+            }
+
 
             foreach (Item i in this.items)
             {
                 i.commerce = commerce.Where(x => x.id == i.id).Select(x => x).ToList().First();
+
+                i.listings = commerceListings.Where(x => x.id == i.id).Select(x => x).ToList().First();
 
                 i.commerce.calculate();
             }
@@ -143,10 +185,10 @@ namespace Enhanced_Guild_Wars_2.User_Controls
             //}
         }
 
-        public List<string> keyClicks = new List<string>();
-
         public void MyKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
+            List<string> keyClicks = new List<string>();
+
             keyClicks.Add(e.KeyData.ToString());
 
             List<string> AltF1 = new List<string>() { "Escape" };
@@ -163,7 +205,28 @@ namespace Enhanced_Guild_Wars_2.User_Controls
 
         public void MyKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            keyClicks.Remove(e.KeyData.ToString());
+            //keyClicks.Remove(e.KeyData.ToString());
+        }
+
+        public void DataGridRow_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+
+            Item itemRow = new Item();
+
+            itemRow = row.DataContext as Item;
+
+            CommerceListing CLUC = new CommerceListing(itemRow);
+
+            CommerceListingUC.Children.Clear();
+
+            CommerceListingUC.Children.Add(CLUC);
+
+            //Grid.SetColumn(CLUC, 0);
+
+            //Grid.SetRow(CLUC, 0);
+
+
         }
 
     }

@@ -64,3 +64,5 @@ C:\Users\Booters Computer\Desktop\GitHub Repository\GuildWars2-Helper-Applicatio
 C:\Users\Booters Computer\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\obj\Debug\Enhanced Guild Wars 2.exe
 C:\Users\Booters Computer\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\obj\Debug\Enhanced Guild Wars 2.pdb
 C:\Users\Booters Computer\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\obj\Debug\Enhanced Guild Wars 2.csprojResolveAssemblyReference.cache
+C:\Users\kttruedson\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\obj\Debug\User Controls\CommerceListing.g.cs
+C:\Users\kttruedson\Desktop\GitHub Repository\GuildWars2-Helper-Application\Enhanced Guild Wars 2\Enhanced Guild Wars 2\obj\Debug\User Controls\CommerceListing.baml

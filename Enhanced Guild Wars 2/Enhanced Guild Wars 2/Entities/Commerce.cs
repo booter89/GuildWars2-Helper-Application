@@ -30,16 +30,33 @@ namespace Enhanced_Guild_Wars_2.Entities
         public string copperSell { get; set; }
         public string copperSpread { get; set; }
 
+        public string negativeSpread { get; set; }
+
         public void calculate()
         {
             getSpread();
             getProfit();
+            isSpreadNegative();
             setBuySellSpreadSubstrings();
         }
 
         public void getSpread()
         {
-            this.spread = (int)(sells.unit_price * .85) - buys.unit_price;
+            this.spread = (int)(sells.unit_price * .85) - buys.unit_price;            
+        }
+
+        public void isSpreadNegative()
+        {
+            if (this.spread <= 0)
+            {
+                this.spread = this.spread * -1;
+
+                this.negativeSpread = "-";
+            }
+            else
+            {
+                this.negativeSpread = null;
+            }
         }
 
         public void getProfit()

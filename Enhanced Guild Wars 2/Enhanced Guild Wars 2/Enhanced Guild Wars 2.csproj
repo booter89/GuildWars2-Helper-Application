@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\GoldSilverCopper.cs" />
     <Compile Include="Routines\API.cs" />
     <Compile Include="Routines\Automation.cs" />
     <Compile Include="User Controls\AccountOverview.xaml.cs">
@@ -67,6 +68,9 @@
     </Compile>
     <Compile Include="User Controls\CharacterOverview.xaml.cs">
       <DependentUpon>CharacterOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\CommerceListing.xaml.cs">
+      <DependentUpon>CommerceListing.xaml</DependentUpon>
     </Compile>
     <Compile Include="User Controls\Converter\CopperStringConverter.cs" />
     <Compile Include="User Controls\Converter\GoldStringConverter.cs" />
@@ -120,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User Controls\CharacterOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\CommerceListing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

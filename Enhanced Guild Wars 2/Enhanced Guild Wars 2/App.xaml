@@ -1,10 +1,14 @@
 ﻿<Application x:Class="Enhanced_Guild_Wars_2.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Enhanced_Guild_Wars_2"
+             xmlns:local="clr-namespace:Enhanced_Guild_Wars_2.User_Controls.Converter"
              xmlns:sys="clr-namespace:System;assembly=mscorlib" 
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <local:IsNullConverter x:Key="IsNullConverter"/>
+        <local:GoldStringConverter x:Key="GoldStringConverter"/>
+        <local:SilverStringConverter x:Key="SilverStringConverter"/>
+        <local:CopperStringConverter x:Key="CopperStringConverter"/>
         
         <Style x:Key="BlankButtonStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
